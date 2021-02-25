@@ -1,0 +1,36 @@
+class PeekingIterator implements Iterator<Integer> {
+    ArrayList<Integer>arr = new ArrayList<>();
+    int curr=0;
+	public PeekingIterator(Iterator<Integer> iterator) {
+        while(iterator.hasNext())
+        {
+            arr.add((Integer)iterator.next());
+        }
+	    // initialize any member here.
+	    
+	}
+	
+    // Returns the next element in the iteration without advancing the iterator.
+	public Integer peek() {
+        return arr.get(curr);
+	}
+	
+	// hasNext() and next() should behave the same as in the Iterator interface.
+	// Override them if needed.
+	@Override
+	public Integer next() {
+	    int val = arr.get(curr);
+        curr++;
+        return val;
+	}
+	
+	@Override
+	public boolean hasNext() {
+        if(curr<arr.size())
+        {
+            return true;
+        }
+        return false;
+	    
+	}
+}
