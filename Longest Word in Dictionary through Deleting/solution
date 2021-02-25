@@ -1,0 +1,46 @@
+class Solution {
+    public String findLongestWord(String s, List<String> dictionary) {
+        Collections.sort(dictionary, new Comparator<String>(){
+            @Override
+            public int compare(String t1,String t2)
+            {
+                if(t1.length() != t2.length())
+                {
+                    return t2.length()-t1.length();
+                }
+                return t1.compareTo(t2);
+            }
+        });
+        for(String word: dictionary)
+        {
+            if(issub(s,word))
+            {
+                return word;
+            }
+        }
+        System.out.println(dictionary);
+        
+        return "";
+        
+    }
+    public boolean issub(String s,String word)
+    {
+        int indi = 0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i) == word.charAt(indi))
+            {
+                indi++;
+                if(indi==word.length())
+                {
+                    return true;
+                }
+            }
+        }
+        if(indi == word.length())
+        {
+            return true;
+        }
+        return false;
+    }
+}
