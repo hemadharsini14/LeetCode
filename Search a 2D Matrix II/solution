@@ -1,0 +1,35 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        boolean mat[][] = new boolean[matrix.length][matrix[0].length];
+        int i = 0;
+        int j=0;
+        return find(matrix,mat,i,j,target);
+        
+        
+    }
+    static boolean find(int mat[][],boolean mat1[][],int i,int j,int target)
+    {
+        if(mat[i][j] == target)
+        {
+            return true;
+        }
+        boolean res1 = false;
+        boolean res2 = false;
+        mat1[i][j] = true;
+        if(i+1<mat.length && j<mat[0].length)
+        {
+            if(mat1[i+1][j]==false)
+            {
+                res1 = find(mat,mat1,i+1,j,target);
+            }
+        }
+        if(i<mat.length && j+1<mat[0].length)
+        {
+            if(mat1[i][j+1]==false)
+            {
+                res2 = find(mat,mat1,i,j+1,target);
+            }
+        }
+        return res1||res2;
+    }
+}
