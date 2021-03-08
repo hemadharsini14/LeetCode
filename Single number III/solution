@@ -1,0 +1,30 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int res[] = new int[2];
+        int ans_inc = 0;
+        int counter=0;
+        while(counter<nums.length)
+        {
+            if(counter+1>=nums.length)
+            {
+                res[ans_inc]=nums[counter];
+                
+                return res;
+            }
+            if(nums[counter]==nums[counter+1])
+            {
+                counter = counter+2;
+            }
+            else
+            {
+                res[ans_inc]=nums[counter];
+                counter++;
+                ans_inc++;
+            }
+        
+        }
+        return res;
+        
+    }
+}
