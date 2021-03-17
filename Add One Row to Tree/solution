@@ -1,0 +1,49 @@
+class Solution {
+    public TreeNode addOneRow(TreeNode root, int val, int depth) {
+        if(depth==1)
+        {
+            TreeNode newnode = new TreeNode(val);
+            newnode.left = root;
+            return newnode;
+        }
+        else
+        {
+            int h = height(root);
+             System.out.println("Here");
+            level_order(root,val,depth-1);
+            return root;
+        }
+    }
+    int height(TreeNode root)
+    {
+        if(root != null)
+        {
+            return 0;
+        }
+        return Math.max(height(root.left)+1,height(root.right)+1);
+    }
+    void level_order(TreeNode root,int val,int depth)
+    {
+        if(root == null)
+        {
+            //System.out.println("Here 1");
+            return;
+        }
+        else if(depth == 1)
+        {
+            //System.out.println("Here");
+            TreeNode new1 = new TreeNode(val);
+            TreeNode new2 = new TreeNode(val);
+            TreeNode left1 = root.left;
+            TreeNode right1 = root.right;
+            new1.left = left1;
+            new2.right = right1;
+            root.left = new1;
+            root.right = new2;
+            System.out.println(root.val);
+        }
+         //System.out.println("Here 1");
+        level_order(root.left,val,depth-1);
+        level_order(root.right,val,depth-1);
+    }
+}
